@@ -37,15 +37,14 @@ public class AccessoDao
 
 
     public boolean registrazioneControllo(UtenteBean utente) {
-        String sql = "INSERT INTO utenti (username, email, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO utenti (username, password) VALUES (?, ?)";
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             String hashedPassword = PasswordHasher.hashPassword(utente.getPassword());
 
             stmt.setString(1, utente.getUsername());
-            stmt.setString(2, utente.getEmail());
-            stmt.setString(3, hashedPassword); // Salva l'hash, non la password in chiaro
+            stmt.setString(2, hashedPassword); // Salva l'hash, non la password in chiaro
 
             return stmt.executeUpdate() > 0;
 

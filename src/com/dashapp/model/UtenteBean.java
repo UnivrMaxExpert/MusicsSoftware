@@ -4,13 +4,8 @@ import java.io.Serializable;
 
 public class UtenteBean implements Serializable
 {
-    private String username, email, password;
-
-    public UtenteBean(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+    private String username;
+    private String password;
 
     public UtenteBean(String username, String password) {
         this.username = username;
@@ -19,10 +14,6 @@ public class UtenteBean implements Serializable
 
     public String getUsername() {
         return username;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getPassword() {

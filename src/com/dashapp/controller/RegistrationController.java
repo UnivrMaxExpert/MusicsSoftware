@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -23,16 +24,12 @@ public class RegistrationController
     private TextField username;
 
     @FXML
-    private TextField email;
-
-    @FXML
-    private TextField password;
+    private PasswordField password;
 
 
     @FXML
     private void handleRegistration(ActionEvent event) throws IOException, SQLException {
         String usernames = username.getText();
-        String emails = email.getText();
         String passwords = password.getText();
 
         /*if (username.isEmpty() || password.isEmpty()) {
@@ -40,7 +37,7 @@ public class RegistrationController
             return;
         }*/
 
-        UtenteBean utente = new UtenteBean(usernames, emails, passwords);
+        UtenteBean utente = new UtenteBean(usernames, passwords);
         AccessoDao acc = new AccessoDao();
         if(acc.registrazioneControllo(utente))
         {

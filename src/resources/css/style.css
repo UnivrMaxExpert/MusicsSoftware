@@ -10,6 +10,12 @@
 	-fx-font-size: 14px;
 }
 
+.text {
+	-fx-text-alignment: center;
+	-fx-font-size: 20px;
+	-fx-fill: black; /* Colore del testo */
+}
+
 /* Input: TextField e PasswordField */
 .text-field, .password-field {
 	-fx-background-color: #3a3a3a;

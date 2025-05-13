@@ -32,10 +32,10 @@
      <!-- Username -->
      <TextField fx:id="usernameField" layoutX="468.0" layoutY="127.0" maxWidth="250" promptText="Username"  />
 
-     <!-- Login Button -->
-     <Button layoutX="468.0" layoutY="244.0" maxWidth="250" onAction="#handleLogin" prefHeight="33.0" prefWidth="157.0" text="Login"/>
+     <!-- Login Button --><!-- -->
+     <Button layoutX="468.0" layoutY="244.0" onAction="#handleLogin" maxWidth="250"  prefHeight="33.0" prefWidth="157.0" text="Login"/>
 
-     <!-- Register Link -->
+     <!-- Register Link --><!--onAction="#handleGoToRegister"-->
      <Hyperlink layoutX="462.0" layoutY="286.0" onAction="#handleGoToRegister" text="Non hai un account? Registrati" />
    <Line endX="-32.0" endY="247.0" layoutX="411.0" layoutY="73.0" startX="-32.0" startY="-5.0"  />
 
