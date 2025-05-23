@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
 
-<AnchorPane prefHeight="500" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashapp.controller.LoginController">
-   <Pane layoutX="42.0" layoutY="111.0" prefHeight="186.0" prefWidth="302.0" stylesheets="@../css/style.css">
-      <children>
-         <Group />
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dashapp.controller.LoginController"
+            style="-fx-background-color: linear-gradient(to bottom, #1e1e1e, #2a5298);"
+            stylesheets="@../css/style.css">
 
-                             <Label layoutX="44.0" layoutY="108.0" prefHeight="57.0" prefWidth="235.0" text="Software Spaccio Musica" />
+    <children>
+        <VBox  fx:id="loginBox" alignment="CENTER" spacing="20" prefWidth="400" prefHeight="360"
+              style="-fx-background-color: rgba(255,255,255,0.95); -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.5, 0, 4);"
+              AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="120.0" AnchorPane.bottomAnchor="120.0">
 
-                 <!-- Logo (opzionale) -->
-           <ImageView fitHeight="80.0" fitWidth="111.0" layoutX="106.0" layoutY="14.0">
-               <Image preserveRatio="true" url="@../images/logo.jpg" />
-           </ImageView>
-      </children>
-   </Pane>
+            <!-- Logo -->
+            <ImageView fitHeight="80.0" fitWidth="180.0">
+                <Image url="@../images/glogo.gif" preserveRatio="true"/>
+            </ImageView>
 
-        <!-- Password -->
-     <PasswordField fx:id="passwordField" layoutX="468.0" layoutY="185.0" maxWidth="250" promptText="Password" />
+            <!-- Titolo -->
+            <Label text="Software Spaccio Musica"
+                   style="-fx-font-size: 18px; -fx-text-fill: #2a2a2a; -fx-font-weight: bold;" />
 
-     <!-- Username -->
-     <TextField fx:id="usernameField" layoutX="468.0" layoutY="127.0" maxWidth="250" promptText="Username"  />
+            <!-- Campi login -->
+            <VBox spacing="10" alignment="CENTER">
+                <TextField fx:id="usernameField" promptText="Username"
+                           style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 8;"
+                           maxWidth="250"/>
+                <PasswordField fx:id="passwordField" promptText="Password"
+                               style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 8;"
+                               maxWidth="250"/>
+            </VBox>
 
-     <!-- Login Button --><!-- -->
-     <Button layoutX="468.0" layoutY="244.0" onAction="#handleLogin" maxWidth="250"  prefHeight="33.0" prefWidth="157.0" text="Login"/>
+            <!-- Bottone Login -->
+            <Button text="Login" onAction="#handleLogin"
+                    style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16;"
+                    prefWidth="200" />
 
-     <!-- Register Link --><!--onAction="#handleGoToRegister"-->
-     <Hyperlink layoutX="462.0" layoutY="286.0" onAction="#handleGoToRegister" text="Non hai un account? Registrati" />
-   <Line endX="-32.0" endY="247.0" layoutX="411.0" layoutY="73.0" startX="-32.0" startY="-5.0"  />
+            <!-- Link Registrazione -->
+            <Hyperlink text="Non hai un account? Registrati"
+                       onAction="#handleGoToRegister"
+                       style="-fx-text-fill: #2a5298;" />
 
-     <!-- Error label -->
-     <Label fx:id="errorLabel" layoutX="-1.0" prefHeight="57.0" prefWidth="89.0" text="" visible="false" />
+            <!-- Messaggio di errore -->
+            <Label fx:id="errorLabel" text="" visible="false"
+                   style="-fx-text-fill: red;" />
+        </VBox>
+    </children>
 </AnchorPane>

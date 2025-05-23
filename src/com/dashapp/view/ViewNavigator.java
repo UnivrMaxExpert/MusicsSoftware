@@ -4,6 +4,7 @@ import com.dashapp.Main;
 import com.dashapp.controller.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.net.URL;
 public class ViewNavigator {
     // Reference to the main controller
     private static MainController mainController;
+    private static Stage mainstage;
 
     // Current authenticated username
     private static String authenticatedUser = null;
@@ -27,12 +29,15 @@ public class ViewNavigator {
     public static void setMainController(MainController controller) {
         mainController = controller;
     }
-
+    public static void setStage(Stage stage) {mainstage = stage;}
     /**
      * Load and switch to a view
-     * @param fxml The name of the FXML file to load
+     *
      */
-    public static void loadView(String fxml) {
+
+    public static void changeTitle(String title) {mainstage.setTitle(title);}
+    public static int getState(){return mainController.getState();}
+    private static void loadView(String fxml) {
         try {
             URL fxmlUrl = Main.class.getResource("/resources/fxml/" + fxml);
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
@@ -48,13 +53,14 @@ public class ViewNavigator {
      * Navigate to the home view
      */
     public static void navigateToHome() {
-        loadView("login.fxml");
+        mainController.setState(2);
+        loadView("home.fxml");
     }
-
     /**
      * Navigate to the login view
      */
     public static void navigateToLogin() {
+        mainController.setState(0);
         loadView("login.fxml");
     }
 
@@ -62,6 +68,7 @@ public class ViewNavigator {
      * Navigate to the register view
      */
     public static void navigateToRegister() {
+        mainController.setState(1);
         loadView("registration.fxml");
     }
 
@@ -71,6 +78,7 @@ public class ViewNavigator {
      */
     public static void navigateToCarica() {
         if (isAuthenticated()) {
+            mainController.setState(3);
             loadView("carica.fxml");
         } else {
             navigateToLogin();
@@ -81,9 +89,10 @@ public class ViewNavigator {
      * Navigate to the profile view (protected)
      * Will redirect to login if not authenticated
      */
-    public static void navigateToProfile() {
+    public static void navigateToCatalogo() {
         if (isAuthenticated()) {
-            loadView("ProfileView.fxml");
+            mainController.setState(4);
+            loadView("catalogo.fxml");
         } else {
             navigateToLogin();
         }

@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #1e1e2f, #3a3a60, #6f00ff); -fx-padding: 20;"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dashapp.controller.RegistrationController"
+            stylesheets="@../css/style.css">
 
-<?import javafx.scene.control.PasswordField?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashapp.controller.RegistrationController">
    <children>
-      <Text layoutX="7.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registazione" wrappingWidth="600.0" />
-      <VBox layoutX="144.0" layoutY="31.0" prefHeight="361.0" prefWidth="326.0">
+      <VBox alignment="TOP_CENTER" layoutX="219.0" layoutY="83.0" prefHeight="469.0" prefWidth="363.0" spacing="15.0">
          <children>
-            <TextField fx:id="username" promptText="Username" />
-            <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="326.0" />
-            <PasswordField fx:id="password" promptText="Password" />
-            <Separator orientation="VERTICAL" prefHeight="18.0" prefWidth="326.0" />
-            <Button fx:id="reg" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="25.0" prefWidth="328.0" text="Registrati" />
+            <Text text="Registrazione"
+                  textAlignment="CENTER"
+                  wrappingWidth="333.0"
+                  styleClass="text" />
+
+            <VBox prefHeight="209.0" prefWidth="327.0" spacing="15.0" alignment="TOP_CENTER">
+               <children>
+                  <TextField styleClass="text-field" fx:id="username" promptText="Username" />
+                  <PasswordField styleClass="password-field" fx:id="password" promptText="Password" />
+                  <Button styleClass="button" fx:id="reg"
+                          text="Registrati"
+                          onAction="#handleRegistration"
+                          prefHeight="35.0"
+                          prefWidth="328.0" />
+               </children>
+            </VBox>
          </children>
+         <padding>
+            <Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </VBox>
    </children>
 </AnchorPane>

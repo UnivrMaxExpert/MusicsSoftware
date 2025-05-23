@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="root" style="-fx-background-color: linear-gradient(to bottom right, #3a0f0f, #4b1e1e, #1e1e1e);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashapp.controller.CatalogoController">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" prefWidth="250">
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+            <Label styleClass="text-label" text="Filtri" />
+            <TextField promptText="Cerca per titolo" />
+            <TextField promptText="Artista" />
+        </VBox>
+    </left>
+
+    <!-- Barra superiore -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #1f1f1f;">
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+            <Button fx:id="filterButton" maxHeight="50.0" maxWidth="93.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#toggleSidebar" prefHeight="50.0" prefWidth="71.0" style="-fx-background-color: #1e1e1e;                -fx-background-radius: 18;                -fx-border-radius: 18;                -fx-border-color: #90caf9;                -fx-border-width: 2;                -fx-cursor: hand;" text="🔍">
+            </Button>
+
+            <Text styleClass="text" text="Catalogo Brani" />
+            <fx:include source="navbar.fxml" fx:id="nav"/>
+        </HBox>
+    </top>
+
+    <!-- Contenuto centrale -->
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" styleClass="scroll-pane-custom">
+            <VBox fx:id="braniContainer" spacing="15">
+                <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+                <!-- I brani vengono aggiunti dinamicamente qui -->
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

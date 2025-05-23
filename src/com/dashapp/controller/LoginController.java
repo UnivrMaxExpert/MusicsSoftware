@@ -1,29 +1,36 @@
 package com.dashapp.controller;
 
+import com.dashapp.model.AccessoDao;
+import com.dashapp.model.UtenteBean;
+import com.dashapp.view.AnimationUtil;
 import com.dashapp.view.ViewNavigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
-import com.dashapp.model.UtenteBean;
-import com.dashapp.model.AccessoDao;
-/*Migliorare il codice per permettere di muoversi tra gli fxml
-* 1-implementare i textfield e menu a discesa per l'inserimento di un brano
-* 2-implementare nuova tabella db con autori come TEXT e tutte le informazioni con anche quale utente l'ha inserito
-* 3-implementare query al db dove si scelgono tutti i brani e si stampano sul catalogo con i loro dati*/
-public class LoginController {
+import java.util.ResourceBundle;
 
-    @FXML
-    private TextField usernameField;
+public class LoginController implements Initializable {
 
-    @FXML
-    private PasswordField passwordField;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Label errorLabel;
+    @FXML private VBox loginBox;
+    @FXML private Button loginButton;
+    @FXML private Hyperlink registerLink;
 
-    @FXML
-    private Label errorLabel;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Animazione all'avvio
+        AnimationUtil.fadeIn(loginBox, 600);
+        AnimationUtil.slideInFromBottom(loginBox, 600, 300);
+        AnimationUtil.pulse(loginButton, 1000); // Effetto loop
+    }
 
     @FXML
     private void handleLogin(ActionEvent event) throws SQLException {
@@ -33,34 +40,31 @@ public class LoginController {
 
         if (username.isEmpty() || password.isEmpty()) {
             showError("Compila tutti i campi.");
+            AnimationUtil.shake(loginBox, 10);
             return;
         }
 
         UtenteBean utente = new UtenteBean(username, password);
         AccessoDao acc = new AccessoDao();
-        if(acc.loginControllo(utente)) {
-            System.out.println("Login successful");
+
+        if (acc.loginControllo(utente)) {
             ViewNavigator.setAuthenticatedUser(username);
+            ViewNavigator.changeTitle("Home applicazione");
+            ViewNavigator.navigateToHome();
+        } else {
+            showError("Credenziali errate.");
+            AnimationUtil.shake(loginBox, 300);
         }
-        else
-            System.out.println("Login failed");
     }
 
     @FXML
     private void handleGoToRegister(ActionEvent event) throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/registration.fxml"));
-        Parent registrationRoot = loader.load();
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene registrationScene = new Scene(registrationRoot);
-        registrationScene.getStylesheets().add(getClass().getResource("/resources/css/style.css").toExternalForm());
-        stage.setScene(registrationScene);
-        stage.setTitle("Registrazione");
-        stage.show();*/
         ViewNavigator.navigateToRegister();
     }
 
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
+        AnimationUtil.fadeIn(errorLabel, 10);
     }
 }

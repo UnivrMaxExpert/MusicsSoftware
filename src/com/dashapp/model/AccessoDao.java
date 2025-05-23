@@ -37,7 +37,7 @@ public class AccessoDao
 
 
     public boolean registrazioneControllo(UtenteBean utente) {
-        String sql = "INSERT INTO utenti (username, password) VALUES (?, ?)";
+        String sql = "INSERT INTO utenti (username, password) VALUES (?, ?)";//Deve fare la query alla tabella richieste DA MODIFICARE
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 

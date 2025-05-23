@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="nav" spacing="30" alignment="CENTER_LEFT"
+      prefHeight="60" prefWidth="800"
+      styleClass="navbar"
+      stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.dashapp.controller.NavbarController">
+    <children>
+        <Button fx:id="home" text="Home" styleClass="nav-button" onAction="#handleHome" />
+        <Button fx:id="carica" text="Carica" styleClass="nav-button" onAction="#handleCarica"/>
+        <Button fx:id="catalogo" text="Catalogo" styleClass="nav-button" onAction="#handleCatalogo"/>
+    </children>
+</HBox>
+

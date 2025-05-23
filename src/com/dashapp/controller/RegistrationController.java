@@ -1,6 +1,7 @@
 package com.dashapp.controller;
 
 import com.dashapp.util.PasswordHasher;
+import com.dashapp.view.ViewNavigator;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,14 +42,8 @@ public class RegistrationController
         AccessoDao acc = new AccessoDao();
         if(acc.registrazioneControllo(utente))
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/login.fxml"));
-            Parent loginroot = loader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene loginscene = new Scene(loginroot);
-            loginscene.getStylesheets().add(getClass().getResource("/resources/css/style.css").toExternalForm());
-            stage.setScene(loginscene);
-            stage.setTitle("Login");
-            stage.show();
+            ViewNavigator.changeTitle("Login applicazione");
+            ViewNavigator.navigateToLogin();
         }
         else
             System.out.println("Errore nella registrazione");
